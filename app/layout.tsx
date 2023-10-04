@@ -1,8 +1,12 @@
+import Footer from '@/components/Footer'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Urbanist } from 'next/font/google'
+import Navbar from '@/components/Navbar'
+import ModalProvider from '@/providers/ModalProvider'
+import ToasterProvider from '@/providers/ToastProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Urbanist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +20,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ToasterProvider />
+        <ModalProvider />
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
